@@ -165,3 +165,157 @@ if len(password) > 8:
         print("Contraseña ivalida")
 else:
     print("Contraseña ivalida")
+
+# Ejercicio 6. Inventario de productos 
+# Crea un diccionario donde las claves sean nombres de productos y los valores sean las unidades disponibles. 
+# inventario = { 
+#  "ratón": 12, 
+#  "teclado": 5, 
+#  "monitor": 0, 
+#  "cable": 25 
+# }
+
+# El programa debe: 
+# - Mostrar todos los productos y sus unidades. 
+# - Mostrar qué productos están agotados. 
+# - Calcular cuántas unidades hay en total. 
+# - Mostrar cuántos productos tienen menos de 10 unidades. 
+# Condición: Debe utilizar diccionarios, items(), acumuladores, contadores e if. 
+
+
+print("Solución del ejercicio 6")
+
+inventario = { 
+ "ratón": 12, 
+ "teclado": 5, 
+ "monitor": 0, 
+ "cable": 25 
+}
+
+for clave, valor in inventario.items():
+    print(clave, "quedan", valor, "unidades")
+
+for clave, valor in inventario.items():
+    if valor == 0:
+        print(clave, "está agotado!")
+
+total = 0
+for valor in inventario.values():
+    total += valor
+print("Total de unidades: ", total)
+
+for clave, valor in inventario.items():
+    if valor < 10:
+        print(clave, "tiene menos de 10 unidades!") 
+
+# Ejercicio 7. Búsqueda en una lista 
+# Crea una lista de nombres de alumnos y una variable con el nombre que se quiere buscar. El programa debe: 
+# - Recorrer la lista buscando ese nombre. 
+# - Si encuentra el nombre, mostrar en qué posición está. 
+# - Cuando lo encuentre, detener la búsqueda. 
+# - Si no lo encuentra, mostrar Alumno no encontrado. 
+# Condición: Debe utilizar listas, for, enumerate, if, break y una variable booleana de control.
+
+lista = ["Cristian", "Javier", "Alvaro", "David", "Jorge"]
+nombre_a_buscar = "Alvaro"
+encontrado = False
+
+for i, nombre in enumerate(lista):
+    if nombre == nombre_a_buscar:
+        print(f"{nombre_a_buscar} está en la posición {i}")
+        encontrado = True
+        break
+
+if not encontrado:
+    print("Alumno no encontrado")
+
+# Ejercicio 8. Limpieza de datos 
+# Crea una lista con varios números, incluyendo positivos, negativos y ceros. 
+# El programa debe: 
+# - Recorrer la lista completa. 
+# - Ignorar los números negativos usando continue. 
+# - Sumar solo los números positivos. 
+# - Contar cuántos ceros hay. 
+# - Mostrar la suma final y la cantidad de ceros. 
+# Condición: Debe utilizar listas, for, continue, un acumulador y un contador. 
+
+print("Solución del ejercicio 8")   
+
+numeros = [1, -2, 3, 0, -5, 0, 7, -1]
+
+suma = 0
+contCeros = 0
+for num in numeros:
+    if num < 0:
+        continue
+    elif num == 0:
+        contCeros += 1
+    else:
+        suma += num
+
+print("Suma final:", suma)
+print("Cantidad de ceros:", contCeros)
+
+# Ejercicio 9. Clasificación de usuarios 
+# Crea una lista de diccionarios. Cada diccionario representa un usuario con los siguientes datos: 
+# nombre 
+# edad 
+# activo 
+# puntos
+
+# El programa debe: 
+# - Clasificar como Premium a los usuarios activos con 100 puntos o más. 
+# - Clasificar como Estándar a los usuarios activos con menos de 100 puntos. 
+# - Clasificar como Inactivo a los usuarios que no estén activos. 
+# - Además, si el usuario es menor de 18 años, debe indicarse como usuario menor de edad. 
+# - Mostrar el nombre de cada usuario y su clasificación. 
+# Condición: Debe utilizar una lista de diccionarios, bucle for, booleanos, if, elif, else y operadores lógicos. 
+
+print("Solución del ejercicio 9")
+
+usuarios = [
+    {"nombre": "Cristian", "edad": 22, "activo": True, "puntos": 150},
+    {"nombre": "Javier", "edad": 17, "activo": True, "puntos": 80},
+    {"nombre": "Alvaro", "edad": 25, "activo": False, "puntos": 50},
+    {"nombre": "David", "edad": 30, "activo": True, "puntos": 90},
+    {"nombre": "Jorge", "edad": 16, "activo": False, "puntos": 120}
+]
+
+for usuario in usuarios:
+    if not usuario["activo"]:
+        clasificacion = "Inactivo"
+    elif usuario["puntos"] >= 100:
+        clasificacion = "Premium"
+    else:
+        clasificacion = "Estándar"
+
+    if usuario["edad"] < 18:
+        clasificacion += " (menor de edad)"
+
+    print(f"{usuario['nombre']}: {clasificacion}")
+
+# Ejercicio 10. Sistema de intentos 
+# Crea una variable codigo_correcto y una lista llamada intentos con varios códigos introducidos. El programa debe: 
+# - Recorrer todos los intentos. 
+# - Mostrar cada intento realizado. 
+# - Si un intento está vacío, debe entrar en una condición donde se use pass como marcador. - Si un intento coincide con el código correcto, mostrar Acceso concedido y terminar el bucle. 
+# - Si después de todos los intentos no se encuentra el código correcto, mostrar Acceso denegado. Condición: Debe utilizar listas, for, if, elif, else, break, pass, una variable booleana y un condicional 
+
+print("Solución del ejercicio 10")
+
+codigo_correcto = "1234"
+intentos = ["0000", "", "1111", "1234", "2222"]
+acceso_concedido = False    
+
+for intento in intentos:
+    if intento == "":
+        pass
+    elif intento == codigo_correcto:
+        print("Acceso concedido")
+        acceso_concedido = True
+        break
+    else:
+        print(f"Intento: {intento}")
+
+if not acceso_concedido:
+    print("Acceso denegado")
