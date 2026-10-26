@@ -55,12 +55,88 @@ class Vehiculo():
         self.marca = marca
         self.modelo = modelo
     
-    def Describir(self):
-        return print(self.marca, self.modelo)
+    def describir(self):
+        return f"{self.marca} {self.modelo}"
     
 class CocheElectrico(Vehiculo):
     def __init__(self, marca, modelo, autonomia_km):
         super().__init__(marca, modelo)
         self.autonomia_km = autonomia_km
         
-    def super().describir():
+
+cocheElectrico = CocheElectrico("Tesla", "Model S", 600)
+print(cocheElectrico.describir())
+
+'''4. Sobrescribir un método heredado'''
+class Motor():
+    def __init__(self, modelo):
+        self.modelo = modelo
+
+    def Arrancar(self):
+        return print("Motor en marcha")
+
+class MotorElectrico(Motor):
+    def Arrancar(self):
+        return print("Motor eléctrico en marcha")
+
+class MotorGasolina(Motor):
+    def Arrancar(self):
+        return print("Motor de gasolina en marcha")
+
+class MotorDiesel(Motor):
+    def Arrancar(self):
+        return print("Motor diésel en marcha")
+
+cocheElectrico = MotorElectrico("Tesla")
+cocheElectrico.Arrancar()
+
+cocheGasolina = MotorGasolina("Ford")
+cocheGasolina.Arrancar()
+
+'''5. Utilizar el polimorfismo'''
+
+def poner_en_marcha(motor):
+    motor.Arrancar()    
+
+motores = [MotorGasolina("Ford"), MotorElectrico("Tesla"), MotorDiesel("Volvo")]
+
+for motor in motores:
+    poner_en_marcha(motor)
+
+
+'''6. Ampliar un método heredado con super()'''
+class CocheElectrico(Vehiculo):
+    def __init__(self, marca, modelo, autonomia_km):
+        super().__init__(marca, modelo)
+        self.autonomia_km = autonomia_km
+    def describir(self):
+        return super().describir() + f". Autonomía: {self.autonomia_km} km."
+
+cocheElectrico = CocheElectrico("Tesla", "Model S", 600)
+print(cocheElectrico.describir())
+print(cocheElectrico.marca, cocheElectrico.modelo, cocheElectrico.autonomia_km)
+
+'''7. Mostrar datos con f-strings'''
+marca = "Seat"
+modelo = "Ibiza"
+año = 2020
+
+print(f"El coche es un {marca} {modelo} del año {año}.")
+
+# Prueba: cambia los valores y vuelve a ejecutar el mismo print
+marca = "Renault"
+modelo = "Clio"
+año = 2018
+
+print(f"El coche es un {marca} {modelo} del año {año}.")
+
+'''8. Gestionar una entrada incorrecta con try y except'''
+entrada = input("Kilómetros recorridos: ")
+
+try:
+    kilometros = int(entrada)
+    print("Kilómetros indicados:", kilometros)
+except ValueError:
+    print("Debes escribir un número entero.")
+
+print("Programa finalizado.")
